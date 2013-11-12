@@ -69,32 +69,32 @@ define([],
             }
 
             // STATIC OPERATIONS
-            function add(a, b, c) {
+            constr.add = function(a, b, c) {
                 a[0] = b[0] + c[0];
                 a[1] = b[1] + c[1];
             }
 
-            function sub(a, b, c) {
+            constr.sub = function(a, b, c) {
                 a[0] = b[0] - c[0];
                 a[1] = b[1] - c[1];
             }
 
-            function copyScale(a, b, c) {
+            constr.copyScale = function(a, b, c) {
                 a[0] = b[0] * c;
                 a[1] = b[1] * c;
             }
 
-            function addScale(a, b, c, d) {
+            constr.addScale = function(a, b, c, d) {
                 a[0] = b[0] + c[0] * d;
                 a[1] = b[1] + c[1] * d;
             }
 
-            function average(a, b, c) {
+            constr.average = function(a, b, c) {
                 a[0] = (b[0] + c[0]) * 0.5;
                 a[1] = (b[1] + c[1]) * 0.5;
             }
 
-            function weightedSum(a, b, c, d, e) {
+            constr.weightedSum = function(a, b, c, d, e) {
                 a[0] = b[0] * c + d[0] * e;
                 a[1] = b[1] * c + d[1] * e;
             }
@@ -115,12 +115,6 @@ define([],
                 divide: divide,
                 negate: negate,
                 dot2: dot2,
-                add: add,
-                sub: sub,
-                copyScale: copyScale,
-                addScale: addScale,
-                average: average,
-                weightedSum: weightedSum,
                 write: write
             }
 

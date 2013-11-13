@@ -16,6 +16,7 @@ require(
 		[
 			'../test/js/vec2.spec.js',
 			'../test/js/vec3.spec.js',
+			'../test/js/vec4.spec.js',
 			'../test/js/vectors.spec.js'
 		],
 		function () {

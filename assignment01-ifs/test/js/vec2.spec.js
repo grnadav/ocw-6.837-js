@@ -108,5 +108,50 @@ define([
             expect(v3[0]).to.be(4);
             expect(v3[1]).to.be(6);
         });
+
+        it('should expose "addScale" static function as copy and scalar multiplication and addition into third vector', function() {
+            var v1 = new vec2(2,3),
+                v2 = new vec2(4,5);
+
+            var v3 = new vec2();
+            vec2.addScale(v3, v1, v2, 2);
+            expect(v3[0]).to.be(10);
+            expect(v3[1]).to.be(13);
+        });
+
+        it('should expose "average" static function as copy and average of 2 vectors into third vector', function() {
+            var v1 = new vec2(2,3),
+                v2 = new vec2(4,5);
+
+            var v3 = new vec2();
+            vec2.average(v3, v1, v2);
+            expect(v3[0]).to.be(3);
+            expect(v3[1]).to.be(4);
+        });
+
+        it('should expose "weightedSum" static function as copy and weighed sum of 2 vectors into third vector', function() {
+            var v1 = new vec2(2,3),
+                v2 = new vec2(4,5);
+
+            var v3 = new vec2();
+            vec2.weightedSum(v3, v1, 2, v2, 3);
+            expect(v3[0]).to.be(16);
+            expect(v3[1]).to.be(21);
+        });
+
+        it('should expose "write" function as printer of vector to console.log', function() {
+            var v1 = new vec2(2,3),
+                origConsole = console.log,
+                printed;
+
+            console.log = function() {
+                printed = Array.prototype.slice.call(arguments).join(',');
+            }
+
+            v1.write();
+            expect(printed).to.eql('2,3');
+
+            console.log = origConsole;
+        });
     });
 });

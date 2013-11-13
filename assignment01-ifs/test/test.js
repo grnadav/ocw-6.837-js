@@ -14,7 +14,8 @@ window.__TESTS__ = true;
 */
 require(
 		[
-			'../test/js/vec2.spec.js'
+			'../test/js/vec2.spec.js',
+			'../test/js/vectors.spec.js'
 		],
 		function () {
             if (window.mochaPhantomJS) {

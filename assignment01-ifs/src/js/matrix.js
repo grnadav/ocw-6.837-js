@@ -65,7 +65,7 @@ define([
                     return;
                 }
                 // be careful, <this> might be <m>
-                var tmp = new matrix(this);
+                var tmp = new matrix(m);
                 for (var y = 0; y < 4; y++) {
                     for (var x = 0; x < 4; x++) {
                         m[y][x] = tmp[x][y];
@@ -73,7 +73,7 @@ define([
                 }
             }
 
-            function inverse(m, epsilon) {
+            function inverse(/*undefined|number|matrix*/m, /*number*/epsilon) {
                 epsilon = epsilon || 1e-08;
                 // handle overloading
                 if (m === undefined) {
@@ -83,22 +83,22 @@ define([
                 }
 
                 var a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4;
-                a1 = this[0][0];
-                b1 = this[0][1];
-                c1 = this[0][2];
-                d1 = this[0][3];
-                a2 = this[1][0];
-                b2 = this[1][1];
-                c2 = this[1][2];
-                d2 = this[1][3];
-                a3 = this[2][0];
-                b3 = this[2][1];
-                c3 = this[2][2];
-                d3 = this[2][3];
-                a4 = this[3][0];
-                b4 = this[3][1];
-                c4 = this[3][2];
-                d4 = this[3][3];
+                a1 = m[0][0];
+                b1 = m[0][1];
+                c1 = m[0][2];
+                d1 = m[0][3];
+                a2 = m[1][0];
+                b2 = m[1][1];
+                c2 = m[1][2];
+                d2 = m[1][3];
+                a3 = m[2][0];
+                b3 = m[2][1];
+                c3 = m[2][2];
+                d3 = m[2][3];
+                a4 = m[3][0];
+                b4 = m[3][1];
+                c4 = m[3][2];
+                d4 = m[3][3];
 
                 var det = this.det4x4(a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4);
 
@@ -107,28 +107,28 @@ define([
                     return 0;
                 }
 
-                this[0][0] = this.det3x3(b2, b3, b4, c2, c3, c4, d2, d3, d4);
-                this[1][0] = -this.det3x3(a2, a3, a4, c2, c3, c4, d2, d3, d4);
-                this[2][0] = this.det3x3(a2, a3, a4, b2, b3, b4, d2, d3, d4);
-                this[3][0] = -this.det3x3(a2, a3, a4, b2, b3, b4, c2, c3, c4);
+                m[0][0] = this.det3x3(b2, b3, b4, c2, c3, c4, d2, d3, d4);
+                m[1][0] = -this.det3x3(a2, a3, a4, c2, c3, c4, d2, d3, d4);
+                m[2][0] = this.det3x3(a2, a3, a4, b2, b3, b4, d2, d3, d4);
+                m[3][0] = -this.det3x3(a2, a3, a4, b2, b3, b4, c2, c3, c4);
 
-                this[0][1] = -this.det3x3(b1, b3, b4, c1, c3, c4, d1, d3, d4);
-                this[1][1] = this.det3x3(a1, a3, a4, c1, c3, c4, d1, d3, d4);
-                this[2][1] = -this.det3x3(a1, a3, a4, b1, b3, b4, d1, d3, d4);
-                this[3][1] = this.det3x3(a1, a3, a4, b1, b3, b4, c1, c3, c4);
+                m[0][1] = -this.det3x3(b1, b3, b4, c1, c3, c4, d1, d3, d4);
+                m[1][1] = this.det3x3(a1, a3, a4, c1, c3, c4, d1, d3, d4);
+                m[2][1] = -this.det3x3(a1, a3, a4, b1, b3, b4, d1, d3, d4);
+                m[3][1] = this.det3x3(a1, a3, a4, b1, b3, b4, c1, c3, c4);
 
-                this[0][2] = this.det3x3(b1, b2, b4, c1, c2, c4, d1, d2, d4);
-                this[1][2] = -this.det3x3(a1, a2, a4, c1, c2, c4, d1, d2, d4);
-                this[2][2] = this.det3x3(a1, a2, a4, b1, b2, b4, d1, d2, d4);
-                this[3][2] = -this.det3x3(a1, a2, a4, b1, b2, b4, c1, c2, c4);
+                m[0][2] = this.det3x3(b1, b2, b4, c1, c2, c4, d1, d2, d4);
+                m[1][2] = -this.det3x3(a1, a2, a4, c1, c2, c4, d1, d2, d4);
+                m[2][2] = this.det3x3(a1, a2, a4, b1, b2, b4, d1, d2, d4);
+                m[3][2] = -this.det3x3(a1, a2, a4, b1, b2, b4, c1, c2, c4);
 
-                this[0][3] = -this.det3x3(b1, b2, b3, c1, c2, c3, d1, d2, d3);
-                this[1][3] = this.det3x3(a1, a2, a3, c1, c2, c3, d1, d2, d3);
-                this[2][3] = -this.det3x3(a1, a2, a3, b1, b2, b3, d1, d2, d3);
-                this[3][3] = this.det3x3(a1, a2, a3, b1, b2, b3, c1, c2, c3);
+                m[0][3] = -this.det3x3(b1, b2, b3, c1, c2, c3, d1, d2, d3);
+                m[1][3] = this.det3x3(a1, a2, a3, c1, c2, c3, d1, d2, d3);
+                m[2][3] = -this.det3x3(a1, a2, a3, b1, b2, b3, d1, d2, d3);
+                m[3][3] = this.det3x3(a1, a2, a3, b1, b2, b3, c1, c2, c3);
 
                 //m *= 1 / det;
-                this.mul(this, 1 / det);
+                this.mul(m, 1 / det);
                 return 1;
             }
 
@@ -170,7 +170,7 @@ define([
                 return t;
             };
 
-            constr.makeScale = function (/*vec3*/v) {
+            constr.makeScale = function (/*vec3|number*/v) {
                 if (typeof v === 'number') {
                     return matrix.makeScale(new vec3(v, v, v));
                 }
@@ -183,7 +183,7 @@ define([
                 return s;
             };
 
-            constr.makeXRotation = function (theta) {
+            constr.makeXRotation = function (/*number*/theta) {
                 var rx = new matrix();
                 rx.setToIdentity();
                 rx[1][1] = Math.cos(theta);
@@ -193,7 +193,7 @@ define([
                 return rx;
             };
 
-            constr.makeYRotation = function (theta) {
+            constr.makeYRotation = function (/*number*/theta) {
                 var ry = new matrix();
                 ry.setToIdentity();
                 ry[0][0] = Math.cos(theta);
@@ -203,7 +203,7 @@ define([
                 return ry;
             };
 
-            constr.makeZRotation = function (theta) {
+            constr.makeZRotation = function (/*number*/theta) {
                 var rz = new matrix();
                 rz.setToIdentity();
                 rz[0][0] = Math.cos(theta);
@@ -213,7 +213,7 @@ define([
                 return rz;
             };
 
-            constr.makeAxisRotation = function (/*vec3*/v, theta) {
+            constr.makeAxisRotation = function (/*vec3*/v, /*number*/theta) {
                 var r = new matrix();
                 r.setToIdentity();
 
@@ -253,7 +253,7 @@ define([
 
             // Use to transform a point with a matrix
             // that may include translation
-            function transform(v) {
+            function transform(/*vec4|vec3|vec2*/v) {
 
                 // handle overloading
                 var i, y, v2;
@@ -270,7 +270,7 @@ define([
                         v[i] = answer[i];
                     }
                 } else if (v instanceof vec3) {
-                    v2 = vec4(v.x(), v.y(), v.z(), 1);
+                    v2 = new vec4(v.x(), v.y(), v.z(), 1);
                     this.transform(v2);
                     v.set(v2.x(), v2.y(), v2.z());
                 } else if (v instanceof vec2) {
@@ -284,7 +284,7 @@ define([
 
             // Use to transform the direction of the ray
             // (ignores any translation)
-            function transformDirection(/*Vec3f & */v) {
+            function transformDirection(/*vec3*/v) {
                 var v2 = new vec4(v.x(), v.y(), v.z(), 0);
                 this.transform(v2);
                 v.set(v2.x(), v2.y(), v2.z());
@@ -315,9 +315,13 @@ define([
                 }
             }
 
-//            function read(input) {
-//
-//            }
+            function read(input) {
+                for (var x=0; x<4; x++) {
+                    for (var y=0; y<4; y++) {
+                        this[x][y] = input[x*4+y];
+                    }
+                }
+            }
 //
 //            function read3x3(input) {
 //
@@ -341,6 +345,7 @@ define([
                 transform: transform,
                 transformDirection: transformDirection,
                 write: write,
+                read: read,
                 write3x3: write3x3
             };
 

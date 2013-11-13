@@ -19,13 +19,11 @@ define([
                         }
                     }
                 }
-
-
             };
 
             function clear() {
                 // create 4x4 dimensional array data structure on this to make is later accessible as myMatrix[2][3]
-                this[0] = this[1] = this[2] = this[3] = [];
+                this[0] = [], this[1] = [], this[2] = [], this[3] = [];
 
                 for (var y = 0; y < 4; y++) {
                     for (var x = 0; x < 4; x++) {
@@ -41,6 +39,7 @@ define([
                         ret[x + y * 4] = this[x][y];
                     }
                 }
+                return ret;
             }
 
             function get(x, y) {
@@ -54,7 +53,7 @@ define([
             function setToIdentity() {
                 for (var y = 0; y < 4; y++) {
                     for (var x = 0; x < 4; x++) {
-                        this[y][x] = (x == y);
+                        this[y][x] = +(x === y);
                     }
                 }
             }

@@ -358,6 +358,28 @@ define([
             }
         });
 
+        it('should #read3x3 fill matrix with array values and pad 1s', function() {
+            var m = new matrix(),
+                vals = [[2,3,4], [5,6,7], [8,9,10]];
+            m.read3x3(vals);
+
+            for (var y = 0,posY=0; y < 4; y++) {
+                if (y == 2) continue;
+                for (var x = 0,posX=0; x < 4; x++) {
+                    if (x == 2) continue;
+                    expect(m[y][x]).to.be(vals[posY][posX]);
+                    posX++;
+                }
+                posY++;
+            }
+
+            for (var x=0; x<4; x++) {
+                expect(m[2][x]).to.be(0);
+                expect(m[x][2]).to.be(0);
+            }
+
+        });
+
 
 
     });

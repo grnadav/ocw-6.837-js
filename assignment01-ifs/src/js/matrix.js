@@ -315,6 +315,7 @@ define([
                 }
             }
 
+            // input is array of length 16
             function read(input) {
                 for (var x=0; x<4; x++) {
                     for (var y=0; y<4; y++) {
@@ -322,10 +323,22 @@ define([
                     }
                 }
             }
-//
-//            function read3x3(input) {
-//
-//            }
+
+            // input is array of length 3, each is array of length 3 numbers
+            // e.g. [ [1,2,3], [4,5,6], [7,8,9] ]
+            // adds keeps 0 on 3rd row and 3rd column
+            function read3x3(input) {
+                this.clear();
+                for (var y = 0,posY=0; y < 4; y++) {
+                    if (y == 2) continue;
+                    for (var x = 0,posX=0; x < 4; x++) {
+                        if (x == 2) continue;
+                        this[y][x]=input[posY][posX];
+                        posX++;
+                    }
+                    posY++;
+                }
+            }
 
 
             constr.prototype = {
@@ -346,6 +359,7 @@ define([
                 transformDirection: transformDirection,
                 write: write,
                 read: read,
+                read3x3: read3x3,
                 write3x3: write3x3
             };
 

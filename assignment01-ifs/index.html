@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script data-main="src/js/app" src="src/lib/requirejs-2.1.9.min.js"></script>
+    <script data-main="src/js/app.js" src="src/lib/requirejs-2.1.9.min.js"></script>
     <title></title>
 </head>
 <body>
+    <label>File input:</label>
+    <input id="file-input" type="file"/>
+    <input id="file-input-load-button" type="button" value="Load file">
+    <label># Iterations:</label>
+    <input id="iterations-input" type="number" min="0" value="10"/>
+    <label># Points:</label>
+    <input id="points-input" type="number" min="0" value="10000"/>
+    <input id="build" type="button" value="Build">
+
+    <canvas id="output" style="border: 1px solid black;"></canvas>
+
 </body>
 </html>

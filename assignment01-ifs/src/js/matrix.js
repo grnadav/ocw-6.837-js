@@ -330,9 +330,9 @@ define([
             function read3x3(input) {
                 this.clear();
                 for (var y = 0,posY=0; y < 4; y++) {
-                    if (y == 2) continue;
+                    if (y === 2) continue;
                     for (var x = 0,posX=0; x < 4; x++) {
-                        if (x == 2) continue;
+                        if (x === 2) continue;
                         this[y][x]=input[posY][posX];
                         posX++;
                     }

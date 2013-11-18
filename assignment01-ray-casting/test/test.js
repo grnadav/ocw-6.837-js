@@ -20,7 +20,8 @@ require(
             '../test/js/vectors.spec.js',
             '../test/js/matrix.spec.js',
             '../test/js/sphere.spec.js',
-            '../test/js/orthographicCamera.spec.js'
+            '../test/js/orthographicCamera.spec.js',
+            '../test/js/group.spec.js'
 		],
 		function () {
             if (window.mochaPhantomJS) {

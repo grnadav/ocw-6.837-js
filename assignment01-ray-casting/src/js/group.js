@@ -18,6 +18,12 @@ define([
                 this.objects.splice(index, 0, obj);
             };
 
+            constr.prototype.intersect = function (/*ray*/r, /*hit*/h, /*number*/tmin) {
+                for (var i=0; i<this.objects.length; i++) {
+                    this.objects[i].intersect(r,h,tmin);
+                }
+            };
+
             return constr;
 
         })();

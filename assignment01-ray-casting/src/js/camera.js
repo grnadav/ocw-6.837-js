@@ -1,7 +1,6 @@
 define([
-    'vec2'
 ],
-    function (vec2) {
+    function () {
 
         var camera = (function () {
 

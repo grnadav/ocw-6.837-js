@@ -1,8 +1,9 @@
 define([
     'object3d',
-    'vec3'
+    'vec3',
+    'ray'
 ],
-    function (object3d, vec3) {
+    function (object3d, vec3, ray) {
 
         var sphere = (function () {
             var constr = function (/*vec3*/center, /*number*/radius, /*vec3*/color) {
@@ -16,11 +17,16 @@ define([
 
             constr.prototype.intersect = function (/*ray*/r, /*hit*/h, /*number*/tmin) {
                 // Find if the ray’s origin is outside the sphere
-                var R = r.getOrigin(),
-                    D = r.getDirection(),
+                var TR = new vec3(), workRay, R,
+                    D,
                     RO = new vec3(),
                     tp,
                     ROLength;
+
+                vec3.sub(TR, r.getOrigin(), this.center);
+                workRay = new ray(r.getDirection(), TR);
+                R = workRay.getOrigin();
+                D = workRay.getDirection();
 
                 vec3.sub(RO, this.center, R);
                 tp = RO.dot3(D);
@@ -31,7 +37,7 @@ define([
                     return false;
                 }
 
-                if (ROLength * ROLength - tp * tp) {
+                if (ROLength * ROLength - tp * tp > this.radius*this.radius) {
                     // no hit
                     return false;
                 }

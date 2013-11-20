@@ -17,6 +17,7 @@ define([
                     this.direction = new vec3(arguments[0]);
                     this.origin = new vec3(arguments[1]);
                 }
+                this.direction.normalize();
             };
 
             constr.prototype.constructor = ray;

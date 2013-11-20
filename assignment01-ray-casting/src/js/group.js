@@ -19,9 +19,12 @@ define([
             };
 
             constr.prototype.intersect = function (/*ray*/r, /*hit*/h, /*number*/tmin) {
+                var isIntersect = false, tmpIntersect;
                 for (var i=0; i<this.objects.length; i++) {
-                    this.objects[i].intersect(r,h,tmin);
+                    tmpIntersect = this.objects[i].intersect(r,h,tmin);
+                    isIntersect = isIntersect ? true : tmpIntersect;
                 }
+                return isIntersect;
             };
 
             return constr;

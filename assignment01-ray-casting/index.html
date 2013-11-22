@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script data-main="src/js/app.js" src="src/lib/requirejs-2.1.9.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div style="display: block;">
+    <label>File input:</label>
+    <input id="file-input" type="file"/>
+    <input id="file-input-load-button" type="button" value="Load file">
+    <label>Size:</label>
+    <input id="size-input" type="number" min="0" value="100"/>
+    <label>Do depth image:</label>
+    <input id="is-depth-image-input" type="checkbox"/>
+    <div id="is-depth-true">
+        <label>Min. Depth:</label>
+        <input id="is-depth-true-min-input" type="number" min="0" value="0"/>
+        <label>Max. Depth:</label>
+        <input id="is-depth-true-max-input" type="number" min="0" value="0"/>
+    </div>
+    <input id="build" type="button" value="Build">
+</div>
+    <canvas id="output" style="border: 1px solid black;"></canvas>
+
+</body>
+</html>

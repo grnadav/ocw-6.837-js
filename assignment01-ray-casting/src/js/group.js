@@ -20,6 +20,7 @@ define([
 
             constr.prototype.intersect = function (/*ray*/r, /*hit*/h, /*number*/tmin) {
                 var isIntersect = false, tmpIntersect;
+                tmin = tmin === undefined ? -Infinity : tmin;
                 for (var i=0; i<this.objects.length; i++) {
                     tmpIntersect = this.objects[i].intersect(r,h,tmin);
                     isIntersect = isIntersect ? true : tmpIntersect;

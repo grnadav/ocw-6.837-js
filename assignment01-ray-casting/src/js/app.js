@@ -62,13 +62,10 @@ require([
                 color = hit.getColor();
                 if (isDepthImage) {
                     t = hit.getT();
-                    if (t >= depthImageMin && t <= depthImageMax) {
-                        tDepth = parseInt((depthImageMax - t) / depthMinMax * 255);
-                        color = new Vec3(tDepth, tDepth, tDepth);
-                    } else {
-                        color = new Vec3(scene.getBackgroundColor());
-                    }
-
+                    tDepth = parseInt((depthImageMax - t) / depthMinMax * 255);
+                    if (tDepth > 255) tDepth = 255;
+                    if (tDepth < 0) tDepth = 0;
+                    color = new Vec3(tDepth, tDepth, tDepth);
                 }
                 image.setPixel(x, y, color);
             }

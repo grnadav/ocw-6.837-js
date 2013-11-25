@@ -21,13 +21,13 @@ define([
 
                 this.horizontal = new vec3();
                 // calculate the horizontal vector
-                vec3.cross3(this.horizontal, this.direction, this.up);
+                vec3.cross3(this.horizontal, this.up, this.direction);
                 this.horizontal.normalize();
                 // make sure up is perpendicular to the rest
                 // deduce third basis vector, the horizontal vector of the image plane,
                 // is deduced from the direction and the up vector (hint: remember vector algebra and cross products)
                 // TODO: needed?
-                vec3.cross3(this.up, this.horizontal,this.direction);
+//                vec3.cross3(this.up, this.horizontal,this.direction);
             };
             constr.prototype = Object.create(camera.prototype);
             constr.prototype.constructor = orthographicCamera;

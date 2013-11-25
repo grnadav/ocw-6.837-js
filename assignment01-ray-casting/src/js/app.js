@@ -49,19 +49,19 @@ require([
             depthMinMax = depthImageMax - depthImageMin;
 
 
-//        var count = 0;
-        for (x = 0; x < 1; x += 1 / size) {
-            for (y = 0; y < 1; y += 1 / size) {
+        var wx, wy;
+        for (x = 0; x < size; x++) {
+            for (y = 0; y < size; y++) {
+                wx = x/size;
+                wy = y/size;
+
                 hit = new Hit(Infinity, scene.getBackgroundColor());
-                ray = scene.getCamera().generateRay(new Vec2(x, y));
+                ray = scene.getCamera().generateRay(new Vec2(wx, wy));
                 scene.getGroup().intersect(ray, hit);
+
                 color = hit.getColor();
-                t = hit.getT();
-//                if (t !== Infinity) {
-//                    console.log('t:'+t + ' color: '+color.write());
-//                    count++;
-//                }
                 if (isDepthImage) {
+                    t = hit.getT();
                     if (t >= depthImageMin && t <= depthImageMax) {
                         tDepth = parseInt((depthImageMax - t) / depthMinMax * 255);
                         color = new Vec3(tDepth, tDepth, tDepth);
@@ -70,11 +70,10 @@ require([
                     }
 
                 }
-                image.setPixel(parseInt(x * size), parseInt(y * size), new Vec3(color));
+                image.setPixel(x, y, color);
             }
         }
 
-//        console.log('count:' + count);
         cvRenderer.render(image);
     }
 

@@ -36,11 +36,11 @@ define([
                     // ray is outside the sphere
                     return false;
                 }
-
-                if (ROLength * ROLength - tp * tp > this.radius*this.radius) {
-                    // no hit
-                    return false;
-                }
+//
+//                if (ROLength * ROLength - tp * tp > this.radius*this.radius) {
+//                    // no hit
+//                    return false;
+//                }
 
                 var a = 1,
                     b = 2 * D.dot3(R),
@@ -55,11 +55,11 @@ define([
                 tminus = (-1*b - d) / (2 * a);
                 tplus = (-1*b + d) / (2 * a);
 
-                if (tminus > tmin && tminus < h.getT()) {
+                if (tminus > 0 && tminus > tmin && tminus < h.getT()) {
                     // new closer hit
                     h.set(tminus, this.color);
                 }
-                if (tplus > tmin && tplus < h.getT()) {
+                if (tplus > 0 && tplus > tmin && tplus < h.getT()) {
                     // new closer hit
                     h.set(tplus, this.color);
                 }

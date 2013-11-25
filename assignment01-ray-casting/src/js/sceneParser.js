@@ -192,7 +192,8 @@ define([
                     if (tokenObj.token === '}') {
                         break;
                     } else if (tokenObj.token === 'color') {
-                        this.background_color = readVec3.call(this);
+                        var color = readVec3.call(this);
+                        this.background_color = new Vec3(color.r()*255, color.g()*255, color.b()*255);
                     } else if (tokenObj.token === 'ambientLight') {
                         // assignment 2 stuff
                     } else {
